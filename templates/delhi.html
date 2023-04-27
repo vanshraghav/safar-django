@@ -1,0 +1,82 @@
+{% extends 'index.html'%}
+{%load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'delhi.css'%}">
+    <title>Explore Delhi</title>
+</head>
+<body>
+    
+    {%block content%}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2 style="margin-top:60px;margin-bottom:50px;font-weight:550;"><em>Places to Explore</em></h2>
+            </div>
+        </div>
+    </div>
+    {% for delhi in explore_delhi %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-6 justify-content-center text-center ">
+                <div class="container-01 " style="margin: 10px 5px 10px 5px;">
+                    
+                    <img class="dest d-block w-100 image-01" src="{{delhi.img.url}}" alt="">
+                    <div class="overlay">
+                        <p class="text"style="color:white;">
+                            {{delhi.name}}
+                        </p>
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-6  ">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="container-02" style="margin: 20px 5px 10px 5px;">
+                            <h1 class="description-img text-center">
+                                <em>{{delhi.desc}}</em>
+                            </h1>    
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p style="justify-content:center;margin-top:20px;font-size:1.1 rem;">
+                            {{delhi.desc_field}}
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    {%endfor%}
+    <form method="post" action="plan">
+        {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button class="button-plan btn btn-primary"style="margin-top:40px;align-items:center;width:auto;font-size:24px;">
+                    <submit><em>Start Exploring</em></submit>
+                </button>
+            </div>
+        </div>
+    </div>
+    </form>
+    {%endblock%}
+    
+    
+</body>
+</html>
